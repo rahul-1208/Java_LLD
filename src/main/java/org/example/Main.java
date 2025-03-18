@@ -10,6 +10,8 @@ import org.example.Decorator.ItalicDecorator;
 import org.example.Decorator.PlainText;
 import org.example.Decorator.Text;
 import org.example.Factory.CarFactory;
+import org.example.Observer.NewsAgency;
+import org.example.Observer.NewsReader;
 import org.example.Singleton.Logger;
 
 import java.util.concurrent.ExecutorService;
@@ -17,6 +19,15 @@ import java.util.concurrent.Executors;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+
+        //OBSERVER
+        NewsAgency newsAgency = new NewsAgency();
+        NewsReader newsReader = new NewsReader();
+
+        newsAgency.attach(newsReader);
+        newsAgency.setNews("This is my first News");
+
+
 
         //DECORATOR
 //        Text text = new PlainText("Hello World");
