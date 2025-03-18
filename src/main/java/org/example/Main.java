@@ -14,6 +14,10 @@ import org.example.Observer.NewsAgency;
 import org.example.Observer.NewsReader;
 import org.example.Singleton.Logger;
 import org.example.State.VendingMachine;
+import org.example.Strategy.CreditCardPaymentStrategy;
+import org.example.Strategy.GooglePayPaymentStrategy;
+import org.example.Strategy.PaymentProcessor;
+import org.example.Strategy.PaypalPaymentStrategy;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,24 +25,35 @@ import java.util.concurrent.Executors;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
+        //STRATEGY
+        PaymentProcessor paypal = new PaymentProcessor(new PaypalPaymentStrategy());
+        paypal.pay();
+
+        PaymentProcessor processor = new PaymentProcessor(new CreditCardPaymentStrategy());
+        processor.pay();
+
+        processor.setPaymentStrategy(new GooglePayPaymentStrategy());
+        processor.pay();
+
+
 //        STATE
-        VendingMachine vendingMachine = new VendingMachine();
-        // First Purchase
-        vendingMachine.insertMoney();
-        vendingMachine.makeSelection();
-        vendingMachine.dispenseItem();
-        System.out.println();
-
-        // Second Purchase (Last stock)
-        vendingMachine.insertMoney();
-        vendingMachine.makeSelection();
-        vendingMachine.dispenseItem();
-        System.out.println();
-
-        // Third Purchase (Out of Stock)
-        vendingMachine.insertMoney();
-        vendingMachine.makeSelection();
-        vendingMachine.dispenseItem();
+//        VendingMachine vendingMachine = new VendingMachine();
+//        // First Purchase
+//        vendingMachine.insertMoney();
+//        vendingMachine.makeSelection();
+//        vendingMachine.dispenseItem();
+//        System.out.println();
+//
+//        // Second Purchase (Last stock)
+//        vendingMachine.insertMoney();
+//        vendingMachine.makeSelection();
+//        vendingMachine.dispenseItem();
+//        System.out.println();
+//
+//        // Third Purchase (Out of Stock)
+//        vendingMachine.insertMoney();
+//        vendingMachine.makeSelection();
+//        vendingMachine.dispenseItem();
 
 
         //OBSERVER
