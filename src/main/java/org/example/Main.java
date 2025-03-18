@@ -13,6 +13,7 @@ import org.example.Factory.CarFactory;
 import org.example.Observer.NewsAgency;
 import org.example.Observer.NewsReader;
 import org.example.Singleton.Logger;
+import org.example.State.VendingMachine;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,12 +21,32 @@ import java.util.concurrent.Executors;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        //OBSERVER
-        NewsAgency newsAgency = new NewsAgency();
-        NewsReader newsReader = new NewsReader();
+//        STATE
+        VendingMachine vendingMachine = new VendingMachine();
+        // First Purchase
+        vendingMachine.insertMoney();
+        vendingMachine.makeSelection();
+        vendingMachine.dispenseItem();
+        System.out.println();
 
-        newsAgency.attach(newsReader);
-        newsAgency.setNews("This is my first News");
+        // Second Purchase (Last stock)
+        vendingMachine.insertMoney();
+        vendingMachine.makeSelection();
+        vendingMachine.dispenseItem();
+        System.out.println();
+
+        // Third Purchase (Out of Stock)
+        vendingMachine.insertMoney();
+        vendingMachine.makeSelection();
+        vendingMachine.dispenseItem();
+
+
+        //OBSERVER
+//        NewsAgency newsAgency = new NewsAgency();
+//        NewsReader newsReader = new NewsReader();
+//
+//        newsAgency.attach(newsReader);
+//        newsAgency.setNews("This is my first News");
 
 
 
